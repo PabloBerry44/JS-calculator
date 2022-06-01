@@ -86,7 +86,8 @@ btn.forEach(btn => {
                         display.innerHTML=num1
                     }
                     if(!num2==''){
-                        equation(num1, num2, operator)
+                        num1, num2, operator = equation(num1, num2, operator)
+                        console.log(num1, num2, operator)
                     }
                 }
             }
@@ -96,8 +97,8 @@ btn.forEach(btn => {
                     num1saved=true
                 }
                 else if(num1saved){
+                    num1, num2, operator = equation(num1, num2, operator)
                     console.log(num1, num2, operator)
-                    equation(num1, num2, operator)
                 }
             }
         }
@@ -121,4 +122,6 @@ function equation(num1, num2, operator){
         num1=num1/num2
     }
     display.innerHTML = num1
+    num2='', operator=''
+    return(num1, num2, operator)
 }
