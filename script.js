@@ -4,6 +4,7 @@ function getNumbers(){
 
         btn.addEventListener('click', ()=>{
 
+            //button +/-
             if(btn.textContent == '±'){
                 if(!numberOneCreated || numberTwo.length==0){
                     numberOne = numberOne * (-1)
@@ -17,6 +18,16 @@ function getNumbers(){
                     display.innerHTML = numberTwo
                     // console.log('2')
                 }
+            }
+            //button AC
+            if(btn.textContent == 'AC'){
+                numberOne = ''
+                numberTwo = ''
+                operator = ''
+                numberOneCreated = false
+                operatorCreated = false
+        
+                display.innerHTML = ''
             }
 
             //check if clicked button is a number
@@ -54,16 +65,6 @@ function getNumbers(){
                     operator = ''
                 }
                 //if none of the numbers is created do nothing
-            }
-
-            if(btn.textContent == 'AC'){
-                numberOne = ''
-                numberTwo = ''
-                operator = ''
-                numberOneCreated = false
-                operatorCreated = false
-        
-                display.innerHTML = ''
             }
         })
     });
