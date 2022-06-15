@@ -3,6 +3,22 @@ function getNumbers(){
     btn.forEach(btn => {
 
         btn.addEventListener('click', ()=>{
+
+            if(btn.textContent == '±'){
+                if(!numberOneCreated || numberTwo.length==0){
+                    numberOne = numberOne * (-1)
+                    display.innerHTML = numberOne
+                    console.log('1')
+                }
+                else if(numberOneCreated){
+                    console.log(numberTwo)
+                    numberTwo = numberTwo * (-1)
+                    console.log(numberTwo)
+                    display.innerHTML = numberTwo
+                    // console.log('2')
+                }
+            }
+
             //check if clicked button is a number
             if(btn.classList.contains('number')){
 
