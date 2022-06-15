@@ -29,23 +29,20 @@ function getNumbers(){
         
                 display.innerHTML = ''
             }
-
             //check if clicked button is a number
             if(btn.classList.contains('number') || btn.textContent == '.'){
-
-                display.innerHTML = display.textContent + btn.textContent
-
-                //if first number is not created
-                if(!numberOneCreated){
-                    numberOne = numberOne + btn.textContent
-                    display.innerHTML = numberOne
-                }
-                //else if first number is created but second is not
-                else if(numberOneCreated){
-                    numberTwo = numberTwo + btn.textContent
-                    display.innerHTML = numberTwo
-                }
-
+                    //if first number is not created
+                    if(!numberOneCreated && numberOne.length<11){
+                        display.innerHTML = display.textContent + btn.textContent
+                        numberOne = numberOne + btn.textContent
+                        display.innerHTML = numberOne
+                    }
+                    //else if first number is created but second is not
+                    else if(numberOneCreated && numberTwo.length<11){
+                        display.innerHTML = display.textContent + btn.textContent
+                        numberTwo = numberTwo + btn.textContent
+                        display.innerHTML = numberTwo
+                    }
             }
             //check if clicked button is an operator
             if(btn.classList.contains('operator')){
