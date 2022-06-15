@@ -31,7 +31,7 @@ function getNumbers(){
             }
 
             //check if clicked button is a number
-            if(btn.classList.contains('number')){
+            if(btn.classList.contains('number') || btn.textContent == '.'){
 
                 display.innerHTML = display.textContent + btn.textContent
 
