@@ -45,8 +45,11 @@ function getNumbers(){
                     }
             }
             //check if clicked button is an operator
-            if(btn.classList.contains('operator')){
-
+            if(btn.classList.contains('operator') && btn.textContent!=operator && display.textContent.length>0){
+                if(btn.textContent!='='){
+                    operator=btn.textContent
+                    operatorCreated=false
+                }
                 if(!numberOneCreated || !operatorCreated){
                     numberOneCreated = true
                     operator = btn.textContent
