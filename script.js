@@ -1,9 +1,6 @@
 function getNumbers(){
-    
     btn.forEach(btn => {
-
         btn.addEventListener('click', ()=>{
-
             //button +/-
             if(btn.textContent == '±'){
                 if(!numberOneCreated || numberTwo.length==0){
@@ -29,8 +26,26 @@ function getNumbers(){
         
                 display.innerHTML = ''
             }
-            //check if clicked button is a number
-            if(btn.classList.contains('number') || btn.textContent == '.'){
+            if(btn.textContent == '%'){
+                percent = parseFloat(display.textContent)/100
+                console.log(percent)
+                numberOne = parseFloat(numberOne)
+
+                if(!numberOneCreated){
+                    // display.innerHTML = percent //all good
+                }
+                else if(numberOneCreated){
+                    numberTwo = numberOne * percent
+                    numberOne = equation(numberOne, numberTwo, operator)
+                    numberTwo = ''
+                    display.innerHTML = numberOne
+                    operatorCreated = false
+                    operator = ''
+                }
+            }
+            else{
+                //check if clicked button is a number
+                if(btn.classList.contains('number') || btn.textContent == '.'){
                     //if first number is not created
                     if(!numberOneCreated && numberOne.length<11){
                         display.innerHTML = display.textContent + btn.textContent
@@ -43,28 +58,26 @@ function getNumbers(){
                         numberTwo = numberTwo + btn.textContent
                         display.innerHTML = numberTwo
                     }
-            }
-            //check if clicked button is an operator
-            if(btn.classList.contains('operator') && btn.textContent!=operator && display.textContent.length>0){
-                if(btn.textContent!='='){
-                    operator=btn.textContent
-                    operatorCreated=false
                 }
-                if(!numberOneCreated || !operatorCreated){
-                    numberOneCreated = true
-                    operator = btn.textContent
-                    operatorCreated = true
+                //check if clicked button is an operator
+                if(btn.classList.contains('operator') && btn.textContent!=operator && display.textContent.length>0){
+                    if(btn.textContent!='='){
+                        operator=btn.textContent
+                        operatorCreated=false
+                    }
+                    if(!numberOneCreated || !operatorCreated){
+                        numberOneCreated = true
+                        operator = btn.textContent
+                        operatorCreated = true
+                    }
+                    else if(numberOneCreated && operatorCreated){
+                        numberOne = equation(parseFloat(numberOne), parseFloat(numberTwo), operator)
+                        numberTwo = ''
+                        display.innerHTML = numberOne
+                        operatorCreated = false
+                        operator = ''
+                    }
                 }
-                else if(numberOneCreated && operatorCreated){
-                    numberOne = equation(parseFloat(numberOne), parseFloat(numberTwo), operator)
-                    numberTwo = ''
-                    
-                    display.innerHTML = numberOne
-
-                    operatorCreated = false
-                    operator = ''
-                }
-                //if none of the numbers is created do nothing
             }
         })
     });
@@ -93,9 +106,11 @@ const display = document.querySelector('.display')
 
 let numberOne = ''
 let numberTwo = ''
+let percent = ''
 let operator = ''
 
 let numberOneCreated = false
 let operatorCreated = false
+let percentDone = false
 
 getNumbers()
